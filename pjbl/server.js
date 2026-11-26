@@ -8,6 +8,11 @@ const app = express();
 app.use(express.json({ limit: "10kb" }));
 app.use(express.static(__dirname));
 
+const path = require("path");
+
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
 app.post("/api/chat", async (req, res) => {
     try {
         const { category, message } = req.body;
